@@ -262,6 +262,10 @@ class TccaController extends Controller
 	 */
 	public function actionIndex()
 	{
+
+		$data['tablero'] = Tcca::model()->count('TCCA_Type=0 and TCCA_Archived is null and TCCA_ViewBy="BOARD"');
+		$data['tabla'] = Tcca::model()->count('TCCA_Type=0 and TCCA_Archived is null and TCCA_ViewBy="TABLA"');
+
 		$model=new Tcca;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -301,7 +305,8 @@ class TccaController extends Controller
 		}
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
-			'model'=>$model
+			'model'=>$model,
+			'data'=>$data
 		));
 	}
 

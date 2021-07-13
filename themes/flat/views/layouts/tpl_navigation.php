@@ -163,7 +163,7 @@ if (isset($_GET['card'])) {
             if($avatar != ''){
                 $profPic = $avatar;
             }else{
-                $profPic = $baseUrl . '/img/demo/user-avatar.png';
+                $profPic = $baseUrl . '/img/avatars/user.png';
             }
             $var = !Yii::app()->user->isGuest ? ( 
                     Yii::app()->user->um->getFieldValue(Yii::app()->user->id, 'nombre') != '' ? 

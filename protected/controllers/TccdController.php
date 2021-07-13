@@ -122,8 +122,13 @@ class TccdController extends Controller
 			</td>
 			</tr>';
 			}
-			/* class="btn btn-danger btn-mini btn-circle" */
-
+			/*$baseUrl = Yii::app()->theme->baseUrl;
+			$avatar = Yii::app()->user->um->getFieldValueInstance($cols->TCCM_IdUser, "avatar");  
+            if($avatar != ''){
+				$profPic = $avatar;
+            }else{
+				$profPic = $baseUrl . '/img/avatars/user.png';
+            } */
 			$labels = $model->tccls;
 			$cols = Tccm::model()->findAll('TCCM_Model="TCCD" and TCCM_Status="Colaborador" and TCCM_IdModel=:id', array(":id" => $id));
 			$pagencias = Tcga::model()->findAll('TCCD_Id=:id', array(":id" => $id));
@@ -143,7 +148,7 @@ class TccdController extends Controller
 			}
 			foreach ($cols as $key) {
 				$usersVal .= $key->TCCM_IdUser . ',';
-				$colaboradores .= '<h5 style="display:inline"><span class="badge" style="padding:5px;margin-right:3px;"><i class="fa fa-user"></i> ' . Yii::app()->user->um->loadUserById($key->TCCM_IdUser)->username . '</span></h5>';
+				$colaboradores .= '<h5 style="display:inline"><span class="badge" style="padding:5px;margin-right:3px;"><i class="fa fa-user"></i> ' . Yii::app()->user->um->loadUserById($key->TCCM_IdUser)->username . '</span></h5>';/* <img width="30" src="'.  $profPic  .'" alt=""> */
 			}
 			foreach ($pagencias as $key) {
 				$agenciasVal .= $key->GCCA_Id . ',';
@@ -228,6 +233,7 @@ class TccdController extends Controller
 										
 											<input id="comentInput" card="' . $model->TCCD_Id . '" type="text" placeholder="Escribe un comentario.." class="form-control">
 											<div class="input-group-btn">
+												<button id="imageSend" class="btn" style="border:none" type="button"><i class="fa fa-archive"></i></button>
 												<button id="commentSend" class="btn btn-success" type="submit">Enviar</button>
 											</div>
 										</div>
@@ -578,7 +584,7 @@ class TccdController extends Controller
 
 			// if($model->save()){
 
-			$this->saveActivity("edito", Yii::app()->user->id, " las etiquetas de la tarjeta", $model->TCCD_Id);
+			$this->saveActivity("edito", Yii::app()->user->id, " los colaboradores de la tarjeta", $model->TCCD_Id);
 			echo CJSON::encode($model);
 
 			// }else{

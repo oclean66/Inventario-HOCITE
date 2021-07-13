@@ -28,7 +28,7 @@
     $cols[] = array(
         'class' => 'CButtonColumn',
         'header' => 'Acciones',
-        'template' => '<div class="btn group">
+        'template' => '<div class="btn-group">
                             <a href="#" data-toggle="dropdown" class="btn btn-success btn-sm dropdown-toggle">
                                 <i class="fa fa-bars"></i>
                             </a>
